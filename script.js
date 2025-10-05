@@ -16,10 +16,10 @@ document.addEventListener('DOMContentLoaded', function () {
       "Forever my home.",
       "Your laughter is my favorite song."
     ],
-    defaultSong: "Assets/mama.mp3.mp3" // add your mp3 file name here (e.g., "mama.mp3")
+    defaultSong: "Assets/mama.mp3.mp3" 
   };
 
-  // Elements
+
   document.getElementById("date").textContent = new Date().toLocaleDateString();
   const gallery = document.getElementById('gallery');
   const playBtn = document.getElementById('playBtn');
@@ -33,14 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
   const confettiCanvas = document.getElementById('confetti');
   const ctx = confettiCanvas.getContext('2d');
 
-  // Gallery click → change main photo
+  
   document.querySelectorAll('.gallery .photo img').forEach(img => {
     img.addEventListener('click', () => {
       document.getElementById('mainPhoto').src = img.src;
     });
   });
 
-  // Song control
+  
   if (CONFIG.defaultSong) song.src = CONFIG.defaultSong;
   playBtn.addEventListener('click', () => {
     if (!song.src) return alert('No song set yet.');
@@ -48,22 +48,43 @@ document.addEventListener('DOMContentLoaded', function () {
     else { song.pause(); playBtn.textContent = 'Play Song'; }
   });
 
-  // Message board
-  addMsg.addEventListener('click', () => {
-    const text = msgInput.value.trim();
-    if (!text) return alert('Write something sweet!');
+  
+  const savedMsgs = JSON.parse(localStorage.getItem('birthdayMessages')) || [];
+  savedMsgs.forEach(text => {
     const msg = document.createElement('div');
     msg.className = 'msg';
     msg.textContent = text;
-    msgs.prepend(msg);
+    msgs.append(msg);
+  });
+  msgs.scrollTop = msgs.scrollHeight;
+
+  
+  addMsg.addEventListener('click', () => {
+    const text = msgInput.value.trim();
+    if (!text) return alert('Write something sweet!');
+
+    const msg = document.createElement('div');
+    msg.className = 'msg';
+    msg.textContent = text;
+
+    msgs.append(msg); 
     msgInput.value = '';
+    msgs.scrollTop = msgs.scrollHeight;
+
+    
+    let savedMsgs = JSON.parse(localStorage.getItem('birthdayMessages')) || [];
+    savedMsgs.push(text);
+    localStorage.setItem('birthdayMessages', JSON.stringify(savedMsgs));
   });
 
+  
   clearMsgs.addEventListener('click', () => {
-    if (confirm('Clear all messages?')) msgs.innerHTML = '';
+    if (confirm('Clear all messages?')) {
+      msgs.innerHTML = '';
+      localStorage.removeItem('birthdayMessages'); 
+    }
   });
 
-  // Confetti setup
   let W = confettiCanvas.width = window.innerWidth;
   let H = confettiCanvas.height = window.innerHeight;
   window.addEventListener('resize', () => {
@@ -95,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (pieces.length > 0) requestAnimationFrame(drawConfetti);
   }
 
-  // 🎉 Surprise Button
+  
   confettiBtn.addEventListener('click', () => {
     pieces.length = 0;
     makeConfetti();
@@ -103,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(() => pieces.length = 0, 5000);
   });
 
-  // 🎂 Cake Button → show cake + confetti
+  
   cakeBtn.addEventListener('click', () => {
     const cake = document.createElement('div');
     cake.className = 'cake-popup';
