@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Mama 🎂</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="confetti"></canvas>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="Assets/photo2.jpg.jpeg" alt="Mama">
+      </div>
+      <div>
+        <h1>Happy Birthday, Mama 🎉</h1>
+        <p class="lead">A beautiful website made with love, just for you 💖</p>
+      </div>
+    </header>
+
+    <section class="card hero">
+      <img id="mainPhoto" class="big-photo" src="Assets/photo1.jpg.png" alt="Main Photo">
+      <div class="info">
+        <p><strong>To the one who gave me everything —</strong> here’s a day to celebrate you.</p>
+        <div class="controls">
+          <button class="btn" id="playBtn">Play Song</button>
+          <button class="btn" id="confettiBtn">Surprise!</button>
+          <button class="btn" id="cakeBtn">🎂 Birthday Cake</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Photo Gallery</h2>
+      <div class="gallery" id="gallery">
+        <div class="photo"><img src="Assets/photo3.jpg.jpeg" alt=""><div class="caption">My sunshine — always.</div></div>
+        <div class="photo"><img src="Assets/photo4.jpg.jpeg" alt=""><div class="caption">Love you to the moon.</div></div>
+        <div class="photo"><img src="Assets/photo5.jpg.jpeg" alt=""><div class="caption">Moments we'll never forget.</div></div>
+        <div class="photo"><img src="Assets/photo6.jpg.jpeg" alt=""><div class="caption">The one who taught me to be brave.</div></div>
+      </div>
+    </section>
+
+    <section class="card timeline">
+      <h2>Our Little Timeline</h2>
+      <div class="timeline-item">
+    <span>2019</span>
+    <p>You came all the way from America to surprise us in India — that day still feels magical 🇮🇳💌</p>
+  </div>
+
+  <div class="timeline-item">
+    <span>2022</span>
+    <p>My first-ever flight — to Kashmir, the dream destination! Every moment was magical because you made it possible ✈️❄️💖</p>
+  </div>
+  
+      <div class="timeline-item">
+        <span>Today</span>
+        <p>A day to say thank you out loud ❤️</p>
+      </div>
+    </section>
+
+    <section class="card msgboard">
+      <h2>Write a Message for Mama</h2>
+      <textarea id="msgInput" placeholder="Write something sweet..."></textarea>
+      <div class="msg-controls">
+        <button class="btn" id="addMsg">Add Message</button>
+        <button class="btn" id="clearMsgs">Clear</button>
+      </div>
+      <div id="msgs"></div>
+    </section>
+
+    <footer>
+      <p>Made with 💕 by your loving child — <span id="date"></span></p>
+    </footer>
+  </div>
+
+  <audio id="song" src=""></audio>
+  <script src="script.js"></script>
+</body>
+</html>
